@@ -1,49 +1,63 @@
-import { getAPI_URL } from '../env/apiUrlHelper'
-import { ComponentResponse, PlanGeneratorResponse } from '../types'
+import { getAPI_URL } from '../env/apiUrlHelper';
+import { ComponentResponse, PlanGeneratorResponse } from '../types';
+import { useEffect, useState } from 'react';
 
-//const env : string = 'prod'
-const ACI_URL = getAPI_URL('dev')
+const ACI_URL = getAPI_URL('dev');
 
 type Props = {
-  planGeneratorResponse : PlanGeneratorResponse,
-  handleChange: ( cc : ComponentResponse) => ComponentResponse
+  planGeneratorResponse: PlanGeneratorResponse;
+  handleChange: (cc: ComponentResponse) => ComponentResponse;
+};
 
-}
+const PlanDownloadComponent = ({ planGeneratorResponse, handleChange }: Props) => {
+  const [fileExists, setFileExists] = useState(true);
 
-const PlanDownloadComponent = ({planGeneratorResponse, handleChange} : Props) => {
+  useEffect(() => {
+    const checkFileExists = async () => {
+      const response = await fetch(`${ACI_URL}/checkFileExists/${planGeneratorResponse?.studentId}`);
+      const data = await response.json();
+      setFileExists(data.exists);
+    };
 
-  const backToHome = () => {
-    console.log("jeee");
-    handleChange({currentComponent:0})
+    checkFileExists();
+  }, [planGeneratorResponse]);
 
-    
-
-
-
-  }
-
-  const getCompleteDownloadLink = () => {
-    return `${ACI_URL}/downloadPlan/${planGeneratorResponse?.studentId}.zip`
-  }
+  const handleDownload = async () => {
+    if (fileExists) {
+      const response = await fetch(`${ACI_URL}/downloadPlan/${planGeneratorResponse?.studentId}.zip`);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `plan_${planGeneratorResponse?.studentId}.zip`;
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        alert('Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.');
+      }
+    } else {
+      alert('Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.');
+      handleChange({ currentComponent: 0 });
+    }
+  };
 
   return (
-
     <>
-    <div className='my-5 p-3 container my-2 plan-download-component-container'>
-      <h2>Se ha generado el plan de: {planGeneratorResponse.studentId}</h2>
-      <p>¡Plan de formación generado con éxito!</p>
-      <div className='d-flex download-component-div'>
-      <a className='btn btn-primary' href={getCompleteDownloadLink()} download>Descargar plan de formación</a>
-      <button className='btn btn-secondary' onClick={backToHome} >Generar otro plan de formación</button>
+      <div className='my-5 p-3 container my-2 plan-download-component-container'>
+        <h2>Se ha generado el plan de: {planGeneratorResponse.studentId}</h2>
+        <p>¡Plan de formación generado con éxito!</p>
+        <div className='d-flex download-component-div'>
+          <button className='btn btn-primary' onClick={handleDownload}>
+            Descargar plan de formación
+          </button>
+          <button className='btn btn-secondary' onClick={() => handleChange({ currentComponent: 0 })}>
+            Generar otro plan de formación
+          </button>
+        </div>
       </div>
-    </div>
-    {/* <div className='loading-component'>
-      CARGANDO...
-      <img className='loading-component-perrito-asu' src="/perrito_asu.png" alt="" />
-    </div> */}
     </>
-  )
-}
+  );
+};
 
-
-export default PlanDownloadComponent
+export default PlanDownloadComponent;

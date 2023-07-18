@@ -113,6 +113,72 @@
     /* animation: loading-animation 3s infinite linear; */
 }
 
+.bg-custom-success {
+    background-color: #3e9abf; /* Azul claro */
+  }
+
+.text-white {
+color: white;
+}
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .header-component-container-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .header-component-container-img-tecnm-logo {
+      position: static;
+      transform: none;
+      margin-bottom: 10px;
+    }
+  
+    .header-component-container-img {
+      position: static;
+      transform: none;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Estilos para pantallas más grandes */
+  @media screen and (min-width: 769px) {
+    .header-component-container-frame {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .header-component-container-img-tecnm-logo {
+      position: static;
+      transform: none;
+    }
+  
+    .header-component-container-img {
+      position: static;
+      transform: none;
+    }
+  }
+  
+  .banner-component-container-frame {
+    border: 3px solid white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner-component-container-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .frame-container {
+    border: 1px solid white;
+  }
+  
+  
 @keyframes loading-animation {
     from {
         transform: rotate(0deg);

@@ -34,7 +34,7 @@ const PlanPreviewComponent = ({studentExcelData, handleChange} : Props) => {
                 {
                     studentExcelData?.subjectList.map((subject)=>{
                         return(
-                        <tr key={subject.subjectId} className={subject.valid ? 'bg-success' : 'bg-danger'}>
+                        <tr key={subject.subjectId} className={subject.valid ? 'bg-custom-success text-white' : 'bg-danger'}>
                             <td className='col-2'>{subject.subjectId}</td>
                             <td>{subject.subjectName}</td>
                             <td>{subject.period}</td>
@@ -48,11 +48,11 @@ const PlanPreviewComponent = ({studentExcelData, handleChange} : Props) => {
             </tbody>
         </table>
         <form className='plan-generator-component-form' onSubmit={e => handlePlanGeneration(e, studentExcelData!, handleChange)}>
-            <label htmlFor="generation-date-input">Fecha de creación del plan de formación:</label>
-            <input required type="date" className='generation-date-input' name='generation-date-input'/>
-            <label htmlFor="period-input">Periodo:</label>
-            <input required type="text" name="period-input" className="period-input"/>
-            <input type="submit" value="Generar plan de formación" />
+        <label htmlFor="generation-date-input"><b>Fecha de creación del plan de formación:</b></label>
+        <input required type="date" className='generation-date-input' name='generation-date-input' />
+        <label htmlFor="period-input"><b>Periodo:</b></label>
+        <input disabled required type="text" name="period-input" className="period-input" defaultValue={studentExcelData?.subjectList?.[0]?.period ?? ''} />
+        <input type="submit" value="Generar plan de formación" style={{ backgroundColor: '#09457B', color: 'white' }} />
         </form>
     </div>
     )
