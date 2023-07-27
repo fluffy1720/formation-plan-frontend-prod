@@ -1,6 +1,7 @@
 import { getAPI_URL } from '../env/apiUrlHelper';
 import { ComponentResponse, PlanGeneratorResponse } from '../types';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const ACI_URL = getAPI_URL('dev');
 
@@ -34,14 +35,25 @@ const PlanDownloadComponent = ({ planGeneratorResponse, handleChange }: Props) =
         a.click();
         URL.revokeObjectURL(url);
       } else {
-        alert('Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.',
+          confirmButtonColor: '#d33',
+        });
       }
     } else {
-      alert('Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.');
-      handleChange({ currentComponent: 0 });
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Se ha eliminado el plan generado por inactividad. Intenta generarlo de nuevo.',
+        confirmButtonColor: '#d33',
+      }).then(() => {
+        handleChange({ currentComponent: 0 });
+      });
     }
   };
-
+  
   return (
     <>
       <div className='my-5 p-3 container my-2 plan-download-component-container'>

@@ -23,7 +23,7 @@ const UploadComponent = ({ handleChange }: Props) => {
   };
 
   return (
-    <div className="container mt-5 m-auto p-5 main-container upload-component-container">
+    <div className="container mt-5 m-auto p-4 main-container upload-component-container">
       <label htmlFor="select-mentor">Mentor:</label>
       <select className="form-select my-3" name="select-mentor" id="select-mentor" onClick={handleSelect}>
         <option value="disabled">Seleccionar mentor</option>
