@@ -1,4 +1,8 @@
-
+body {
+  margin: 3px; /* Agrega márgenes alrededor del cuerpo de la página */
+  padding: 0; /* Asegúrate de que no haya relleno en el cuerpo */
+  background-color: white; /* Fondo blanco */
+}
 .header-component-container {
     display: flex;
     justify-content: space-evenly;
@@ -39,13 +43,6 @@
 
 
 @media (max-width: 400px) {
-    .header-component-container-h1,
-    .header-component-container-img {
-        width: 110px; /* Ajusta el tamaño de la imagen para resoluciones menores a 400px */
-    }
-    .header-component-container-h2{
-        display: none;
-    }
     .step-circle {
         font-size: 1.5em; /* Tamaño reducido para resoluciones menores a 400px */
         padding: 2px 3px; /* Ajusta los valores de padding según tus necesidades */
@@ -113,6 +110,108 @@
     /* animation: loading-animation 3s infinite linear; */
 }
 
+.bg-custom-success {
+    background-color: #3e9abf; /* Azul claro */
+  }
+
+.text-white {
+color: white;
+}
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .header-component-container-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .header-component-container-img-tecnm-logo {
+      display: none;
+      position: static;
+      transform: none;
+      margin-bottom: 10px;
+      height: 30%;
+      width: 30%; /* Establece el ancho deseado para la imagen */
+      object-fit: contain;
+    }
+  
+    .header-component-container-img {
+      display: none;
+      position: static;
+      transform: none;
+      margin-top: 10px;
+      height: 30%;
+      width: 30%; /* Establece el ancho deseado para la imagen */
+      object-fit: contain;
+    }
+  }
+  
+  /* Estilos para pantallas más grandes */
+  @media screen and (min-width: 769px) {
+    .header-component-container-frame {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .header-component-container-img-tecnm-logo {
+      position: static;
+      transform: none;
+    }
+  
+    .header-component-container-img {
+      position: static;
+      transform: none;
+    }
+  }
+  
+  .banner-component-container-frame {
+    border: 3px solid white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ajustar el ancho del marco al 100% del contenedor */
+    height: 100%; /* Ajustar la altura del marco al 100% del contenedor */
+    box-sizing: border-box; /* Incluir el tamaño del borde en el tamaño total del contenedor */
+  }
+  
+  .banner-component-container-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .frame-container {
+    border: 3px solid white;
+    width: 100%; /* Ajustar el ancho del marco al 100% del contenedor */
+    height: 100%; /* Ajustar la altura del marco al 100% del contenedor */
+    box-sizing: border-box; /* Incluir el tamaño del borde en el tamaño total del contenedor */
+  }
+  
+  @media (max-width: 1000px) {
+    .header-component-container-h1{
+      font-size: 25px;
+    }
+    .header-component-container-h2{
+      font-size: 25px;
+    }
+    .header-component-container-img,
+    .header-component-container-img-tecnm-logo {
+      max-width: 20%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 770px) {
+    .header-component-container-h1{
+      font-size: 20px;
+    }
+    .header-component-container-h2{
+      font-size: 20px;
+    }
+  }
+  
 @keyframes loading-animation {
     from {
         transform: rotate(0deg);
