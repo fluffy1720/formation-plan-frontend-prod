@@ -215,3 +215,20 @@ color: white;
         transform: rotate(10deg);
     }
 }
+
+#btnOpenManual {
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 15px 32px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; /* Tamaño del texto */
+  margin: 10px 2px; /* Márgenes */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+#btnOpenManual:hover {
+  background-color: #3e8e41; /* Color de fondo al pasar el mouse */
+}

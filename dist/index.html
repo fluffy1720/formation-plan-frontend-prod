@@ -14,6 +14,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <button id="btnOpenManual">¿Dudas? Haz clic aquí</button>
+    <script>
+      document.getElementById('btnOpenManual').addEventListener('click', function() {
+          // URL del PDF
+          var pdfUrl = 'ruta/al/manual.pdf';
+      
+          // Abre una ventana emergente con el PDF
+          window.open(pdfUrl, '_blank');
+      });
+      </script>
     
     <strong class="d-none">Equipo de Desarrollo - OKYSoft Technology Group</strong>
     <small class="d-none">Cano Edgar | Hernández Yesenia | Larios Pedro</small>
